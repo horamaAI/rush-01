@@ -6,7 +6,7 @@
 /*   By: dmahoro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 08:52:53 by dmahoro-          #+#    #+#             */
-/*   Updated: 2021/01/23 15:37:22 by dmahoro-         ###   ########.fr       */
+/*   Updated: 2021/01/23 15:51:52 by dmahoro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char *argv[])
 	else
 	{
 		ft_read_input(grid, argv[1]);
-		print_grid(grid);
+		print_grid(grid, 1, 5);
 	}
 
 	i = 0;

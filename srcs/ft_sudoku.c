@@ -6,23 +6,23 @@
 /*   By: dmahoro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:34:38 by dmahoro-          #+#    #+#             */
-/*   Updated: 2021/01/23 15:36:56 by dmahoro-         ###   ########.fr       */
+/*   Updated: 2021/01/23 15:51:10 by dmahoro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 
-void	print_grid(char **grid)
+void	print_grid(char **grid, int lim_inf, int lim_sup)
 {
 	int		i;
 	int		j;
 
-	i = 0;
-	while (i < 6)
+	i = lim_inf;
+	while (i < lim_sup)
 	{
-		j = 0;
-		while (j < 6)
+		j = lim_inf;
+		while (j < lim_sup)
 		{
 			if (grid[i][j] >= '1' && grid[i][j] <= '4')
 				write(1, &grid[i][j], 1);
@@ -37,18 +37,6 @@ void	print_grid(char **grid)
 	}
 }
 
-void	ft_write_input(char **grid, int index, char value)
-{
-	if (index >= 1 && index <= 4)
-		grid[0][index] = value;
-	if (index >= 5 && index <= 8)
-		grid[5][index - 4] = value;
-	if (index >= 9 && index <= 12)
-		grid[index - 8][0] = value;
-	if (index >= 13 && index <= 16)
-		grid[index - 12][5] = value;
-}
-
 void	ft_read_input(char **grid, char *str)
 {
 	int	count;
@@ -61,7 +49,14 @@ void	ft_read_input(char **grid, char *str)
 		if (str[count] >= '1' && str[count] <= '4')
 		{
 			index = index + 1;
-			ft_write_input(grid, index, str[count]);
+			if (index >= 1 && index <= 4)
+				grid[0][index] = str[count];
+			if (index >= 5 && index <= 8)
+				grid[5][index - 4] = str[count];
+			if (index >= 9 && index <= 12)
+				grid[index - 8][0] = str[count];
+			if (index >= 13 && index <= 16)
+				grid[index - 12][5] = str[count];
 		}
 		count = count + 1;
 	}
