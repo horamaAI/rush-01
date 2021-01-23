@@ -6,21 +6,21 @@
 /*   By: dmahoro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 08:52:53 by dmahoro-          #+#    #+#             */
-/*   Updated: 2021/01/23 15:51:52 by dmahoro-         ###   ########.fr       */
+/*   Updated: 2021/01/23 16:15:39 by dmahoro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sudoku.c"
 
-int	main(int argc, char *argv[])
+char	**init_grid(void)
 {
-	char	**grid = malloc(6*sizeof(char*));
 	int		i;
 	int		j;
-
+	char	**grid;
+   
+	grid = malloc(6 * sizeof(char * ));
 	i = 0;
-	grid = malloc(6*sizeof(char*));
-	while (i< 6)
+	while (i < 6)
 	{
 		grid[i] = malloc(6*sizeof(char));
 		j = 0;
@@ -31,24 +31,38 @@ int	main(int argc, char *argv[])
 		}
 		i = i + 1;
 	}
+	return (grid);
+}
 
-	if (argc != 2)
+int		main(int argc, char *argv[])
+{
+	char	**grid;
+	int		i;
+
+	grid = init_grid();
+	if (argc == 2)
 	{
-		write(1, &"Error\n", 6);
+		i = ft_read_input(grid, argv[1]);
+		if (i == 0)
+		{
+			i = find_first_solution(grid);
+		}
 	}
+	if (argc != 2 || i != 0)
+		write(1, &"Error\n", 6);
 	else
 	{
-		ft_read_input(grid, argv[1]);
 		print_grid(grid, 1, 5);
 	}
-
-	i = 0;
-	while (i < 6)
+	if (argc == 2)
 	{
-		free(grid[i]);
-		i = i + 1;
+		i = 0;
+		while (i < 6)
+		{
+			free(grid[i]);
+			i = i + 1;
+		}
+		free(grid);
 	}
-	free(grid);
-
 	return (0);
 }

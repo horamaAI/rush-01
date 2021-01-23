@@ -6,7 +6,7 @@
 /*   By: dmahoro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:34:38 by dmahoro-          #+#    #+#             */
-/*   Updated: 2021/01/23 15:51:10 by dmahoro-         ###   ########.fr       */
+/*   Updated: 2021/01/23 16:31:51 by dmahoro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,24 @@ void	print_grid(char **grid, int lim_inf, int lim_sup)
 	}
 }
 
-void	ft_read_input(char **grid, char *str)
+int		ft_fill_is_possible(char **grid, int i)
+{
+	if ((grid[0][i] == 4 && grid[5][i] != 1) || (grid[5][i] == 4 && grid[0][i] != 1))
+		return (1);
+	else
+	{
+		if (grid[0][i] == 4)
+		{
+		}
+		else if (grid[5][i] == 4)
+		{
+			write(1, &"\"NOOOO!\", Luke S.\n", 25);
+		}
+	}
+	return (0);
+}
+
+int		ft_read_input(char **grid, char *str)
 {
 	int	count;
 	int	index;
@@ -60,25 +77,24 @@ void	ft_read_input(char **grid, char *str)
 		}
 		count = count + 1;
 	}
+	if (count != 16)
+		return (-1);
+	else
+		return (0);
 }
 
-int		find_f_solution(char **grid)
+int		find_first_solution(char **grid)
 {
 	int		i;
 
 	i = 1;
 	while (i <= 4)
 	{
-		if (grid[0][i] == 4 || grid[5][i] == 4)
+		if (grid[0][i] == 4 || grid[0][i] == 1)
 		{
-			if ((grid[0][i] == 4 && grid[5][i] != 1) || (grid[5][i] == 4 && grid[0][i] != 1))
-				i = i + 1;
-			else
-			{
-			}
 		}
 		if ((grid[0][i] == 3 && grid[5][i] > 2) || (grid[5][i] == 3 && grid[0][i] != 1))
-			i = i + 1;
+			return (1);
 	}
 	return (0);
 }
