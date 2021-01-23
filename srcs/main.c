@@ -6,7 +6,7 @@
 /*   By: dmahoro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 08:52:53 by dmahoro-          #+#    #+#             */
-/*   Updated: 2021/01/23 16:15:39 by dmahoro-         ###   ########.fr       */
+/*   Updated: 2021/01/23 20:44:07 by dmahoro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,17 @@ int		main(int argc, char *argv[])
 	char	**grid;
 	int		i;
 
+printf("argc == %d\n", argc);
 	grid = init_grid();
 	if (argc == 2)
 	{
+//printf("arg is == 2\n");
 		i = ft_read_input(grid, argv[1]);
+//printf("%d before res\n", i);
 		if (i == 0)
 		{
 			i = find_first_solution(grid);
+//printf("%d res\n", i);
 		}
 	}
 	if (argc != 2 || i != 0)
